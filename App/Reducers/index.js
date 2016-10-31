@@ -1,12 +1,8 @@
 import { combineReducers } from 'redux';
-
-const fakeReducer = (state = {}, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import CodeReducer from './upc-reducer';
+import uiReducer from './ui-reducer';
 
 export default combineReducers({
-  fakeReducer
+  code: CodeReducer,
+  ui: uiReducer
 });

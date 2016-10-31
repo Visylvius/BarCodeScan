@@ -5,7 +5,9 @@ import { Router } from 'react-native-router-flux';
 import store from './store';
 import { scenes } from './routes';
 
+console.log('state', store.getState());
+
 export const Root = () =>
   <Provider store={store}>
-    <Router scenes={scenes}/>
+    <Router scenes={scenes} />
   </Provider>;
