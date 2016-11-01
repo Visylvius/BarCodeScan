@@ -30,14 +30,20 @@ export const checkUpcCode = code => { // eslint-disable-line
     if (upReducer.upcCodes === null) {
       dispatch(fetchUpcCodes())
         .then((data) => {
-          const found = data.value.upc.filter(upcs => upcs === code);
-          if (found) {
+          console.log('data', data, 'userCode', code)
+          data.value.upc.filter((upcs) => {
+            console.log('upcs', upcs, 'code', code, 'upcs === code', upcs.upc === code.data);
+          });
+          const found = data.value.upc.filter(upcs => upcs.upc === code.data);
+          console.log('found', found);
+          if (found.length === 0) {
             dispatch(toggleModel('There was no code found', true));
             dispatch(checkCodeError());
             return dispatch(resetCode());
           }
           dispatch(toggleModel('Code was found', false));
-          return dispatch(checkCodeSuccess(code));
+          dispatch(checkCodeSuccess(code));
+          return dispatch(resetCode());
         });
       // dispatch(checkUpcCode(code));
     }
