@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Dimensions, Modal, TouchableHighlight} from 'react-native';
-import Camera from 'react-native-camera';
+import BarcodeScanner from 'react-native-barcodescanner';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
 });
 
 export const HomeViewIos = ({ checkUpcCode, code, ui, closeModal}) => {
-  console.log(ui);
   return (
     <View style={styles.container}>
       <View style={styles.container}>
@@ -35,16 +34,10 @@ export const HomeViewIos = ({ checkUpcCode, code, ui, closeModal}) => {
         </View>
        </Modal>
       </View>
-      <Camera
-        ref={(cam) => {
-          this.camera = cam;
-        }}
-        style={styles.preview}
-        aspect={Camera.constants.Aspect.fill}
-        onBarCodeRead={(code) => checkUpcCode(code)}
-      >
-      </Camera>
-
+      <BarcodeScanner
+         onBarCodeRead={(code) => checkUpcCode(code)}
+         style={{ flex: 1 }}
+       />
       <Text style={styles.welcome}>Welcome to the Home Page</Text>
     </View>
   );

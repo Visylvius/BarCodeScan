@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { HomeViewIos } from './HomeViewIos';
+import { HomeViewWrapper } from './HomeViewIos';
 import { checkUpcCode } from '../Actions/barcode-actions';
 
 import { closeModal } from '../Reducers/ui-reducer';
@@ -10,4 +10,4 @@ export default connect(
     ui: state.ui
   }),
   { checkUpcCode, closeModal }
-)(HomeViewIos);
+)(HomeViewWrapper);

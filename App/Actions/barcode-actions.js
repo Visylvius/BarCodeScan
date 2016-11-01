@@ -26,22 +26,15 @@ const resetCode = () => ({type: RESET_CODE})
 
 export const checkUpcCode = code => { // eslint-disable-line
   return (dispatch, getState) => {
-    console.log('getState', getState());
     const upReducer = getState().code.upcCodeReducer;
-    console.log('upReducer', upReducer);
     if (upReducer.upcCodes === null) {
-      console.log('HELLOOLLOL');
       dispatch(fetchUpcCodes())
         .then((data) => {
-          console.log('data', data);
-          console.log('code', code);
           const found = data.value.upc.filter(upcs => upcs === code);
-          console.log('found', found, '!found', !found);
           if (found) {
-            console.log('in not found');
             dispatch(toggleModel('There was no code found', true));
             dispatch(checkCodeError());
-            return dispatch(resetCode())
+            return dispatch(resetCode());
           }
           dispatch(toggleModel('Code was found', false));
           return dispatch(checkCodeSuccess(code));
